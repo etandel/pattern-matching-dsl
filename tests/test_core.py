@@ -1,15 +1,9 @@
-import unittest
-
 from pattern import Literal, WHATEVER, ONE_OR_MORE
 
+from .base import PatternTestCase
 
-class TestPattern(unittest.TestCase):
-    def assert_matches(self, pattern, candidate):
-        return self.assertRegexpMatches(candidate, pattern.compile())
 
-    def assert_doesnt_match(self, pattern, candidate):
-        return self.assertNotRegexpMatches(candidate, pattern.compile())
-
+class TestCore(PatternTestCase):
     def test_literal_value(self):
         self.assert_matches(Literal('hello'), 'hello')
 
