@@ -1,3 +1,5 @@
+import re
+
 from .multiplier import Multiplier
 from .validation import assert_type
 
@@ -13,6 +15,10 @@ def _to_pattern(value):
 class Pattern(object):
     def compile(self):
         raise NotImplementedError()
+
+    def match(self, string):
+        m = re.match(self.compile(), string)
+        return m.string if m else None
 
     def __add__(self, other):
         return Concat(self, other)
