@@ -1,4 +1,5 @@
-from pattern import Literal, WHATEVER, ONE_OR_MORE
+from pattern import WHATEVER, ONE_OR_MORE
+from pattern.core import Any, Literal
 
 from .base import PatternTestCase
 
@@ -6,6 +7,14 @@ from .base import PatternTestCase
 class TestCore(PatternTestCase):
     def test_literal_value(self):
         self.assert_matches(Literal('hello'), 'hello')
+
+    def test_any(self):
+        val = 'doge'
+        p = Any(val)
+        for c in val:
+            self.assert_matches(p, c)
+
+        self.assert_doesnt_match(p, 'f')
 
     def test_concat(self):
         p1 = Literal('hel') + Literal('lo')

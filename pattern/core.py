@@ -39,6 +39,14 @@ class Literal(Pattern):
         return _protect(self.value)
 
 
+class Any(Pattern):
+    def __init__(self, value):
+        self.value = value
+
+    def compile(self):
+        return _protect('[{}]'.format(self.value))
+
+
 class Concat(Pattern):
     def __init__(self, pattern1, pattern2):
         self.pattern1 = _to_pattern(pattern1)
