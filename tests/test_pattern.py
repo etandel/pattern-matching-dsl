@@ -73,7 +73,6 @@ class TestPattern(unittest.TestCase):
 
     def test_complex_expressions_are_properly_grouped(self):
         p = (Literal('a') * 3 | Literal('b')) * 2 | Literal('c') * 4
-        print(p.compile())
 
         self.assert_matches(p, 'aaaaaa')
         self.assert_matches(p, 'bb')
